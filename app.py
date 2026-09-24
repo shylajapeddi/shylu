@@ -40,6 +40,7 @@ def clean_code(text):
 
 @tool
 def generate_test_cases(task_description: str) -> str:
+    """Generate 3 to 5 Verilog test scenarios for the given task."""
     response = llm.invoke(f"""
 You are a Senior RTL Verification Engineer.
 Generate 3 to 5 specific test scenarios for this Verilog task:
@@ -50,6 +51,7 @@ Include normal, boundary, and edge cases. Return only a numbered list.
 
 @tool
 def run_verilog_simulation(verilog_code: str, testbench_code: str) -> str:
+    """Compile and simulate Verilog code using Icarus Verilog."""
     with tempfile.TemporaryDirectory() as d:
         design = os.path.join(d, "design.v")
         tb = os.path.join(d, "testbench.v")
